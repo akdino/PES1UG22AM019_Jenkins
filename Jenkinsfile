@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script {
                     echo "Building the C++ file..."
-                    sh 'g++ -o PES1UG22AM019-1 main/hello.cpp || (echo "Build Failed" && exit 1)'
+                    sh 'g++ -o PES1IUG22AM019-1 main/hello.cpp'
                 }
             }
         }
@@ -15,7 +15,7 @@ pipeline {
             steps {
                 script {
                     echo "Testing the compiled file..."
-                    sh './PES1UG22AM019-1 || (echo "Test Failed" && exit 1)'
+                    sh './PES1IUG22AM019-1'
                 }
             }
         }
@@ -24,9 +24,15 @@ pipeline {
             steps {
                 script {
                     echo "Deploying the application..."
-                    sh 'echo "Deployment successful"'
+                    sh 'echo "Deployment step goes here"'
                 }
             }
+        }
+    }
+
+    post {
+        failure {
+            echo 'Pipeline failed'
         }
     }
 }
